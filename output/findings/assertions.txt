@@ -1,62 +1,41 @@
-Online_Affiliate_Account_Transactions.xsd
-=========================================
-<xs:assert test="if (exists(AffiliateMeanOfPayments)) then exists(AffiliateMeanOfPaymentProviderName) else if (not(exists(AffiliateMeanOfPayments))) then (not(exists(AffiliateMeanOfPaymentProviderName)) and not(exists(AffiliatePaymentServiceProviderCode)) and not(exists(AffiliateMeanOfPaymentAccountNumber))) else false()" />
+Online_Poker_Tournament_Start.xsd
+=================================
+<xs:assert test="if (exists(PTEstimatedEndDate)) then (PTStartDate lt PTEstimatedEndDate) else if (not(exists(PTEstimatedEndDate))) then true() else false() " />
 
-Online_Bettings.xsd
-===================
-<xs:assert test="if (exists(EstimatedBetSettlementDate)) then (BetPlacedDate lt EstimatedBetSettlementDate) else if (not (exists(EstimatedBetSettlementDate))) then true() else false() " />
-<xs:assert test="if (exists(BonusID)) then exists(BetData/NonRedeemableBonusAmountWagered) else if (not (exists(BonusID))) then (not(exists(BetData/NonRedeemableBonusAmountWagered))) else false()" />
+Online_Peer_to_Peer_Games.xsd
+=============================
+<xs:assert test="PtPGameSessionStartDate le PtPGameSessionEndDate" />
+<xs:assert test="(not(exists(PtPGameCategoryA))) or (PtPGameCategoryA = 1 and exists(LiveGames)) or (PtPGameCategoryA != 1 and not(exists(LiveGames)))" />
+<xs:assert test="if (exists(BonusID)) then (exists(PtPGameSessionData/Stakes/PtPGameSessionNonRedeemableBonusAmountWagered) or exists(PtPGameSessionData/Winnings/PtPGameSessionRedeemableRakeBackBonus) or exists(PtPGameSessionData/Winnings/PtPGameSessionNonRedeemableBonusAmountWon)) else if(not(exists(BonusID))) then (not(exists(PtPGameSessionData/Stakes/PtPGameSessionNonRedeemableBonusAmountWagered)) and not(exists(PtPGameSessionData/Winnings/PtPGameSessionRedeemableRakeBackBonus)) and not(exists(PtPGameSessionData/Winnings/PtPGameSessionNonRedeemableBonusAmountWon))) else false()" />
+<xs:assert test="if (exists(JackpotID)) then exists(PtPGameSessionData/Stakes/PtPGameSessionJackpotRake) else if (not(exists(JackpotID))) then (not(exists(PtPGameSessionData/Stakes/PtPGameSessionJackpotRake))) else false()" />
 
-Online_Bet_Events.xsd
-=====================
-<xs:assert test="if (BetEventCategoryC = 1 or BetEventCategoryC = 2) then exists(BetEventCategoryD) else if (BetEventCategoryC != 1 and BetEventCategoryC != 2) then not(exists(BetEventCategoryD)) else false() " />
-<xs:assert test="(BetEventType = 1 and exists(MainBetEventID)) or (BetEventType = 0 and not (exists(MainBetEventID)))" />
-<xs:assert test="if (BetEventCategoryC = 2) then not(exists(CountryISOCode)) else if (BetEventCategoryC = 1) then exists(CountryISOCode) else if (BetEventCategoryC = 3 or BetEventCategoryC = 4) then (exists(CountryISOCode) or not(exists(CountryISOCode))) else false() " />
-<xs:assert test="if (exists(BetEventResultDate)) then (BetEventCreationDate lt BetEventResultDate) else if (not (exists(BetEventResultDate))) then true() else false() " />
-<xs:assert test="if (CancellationData/BetEventCancellation[string(.) eq 'true']) then exists(CancellationData/BetEventCancellationDate) else if (CancellationData/BetEventCancellation[string(.) eq 'false']) then (not(exists(CancellationData/BetEventCancellationDate))) else false()" />
-<xs:assert test="if (exists(CancellationData/BetEventCancellationDate)) then (BetEventCreationDate lt CancellationData/BetEventCancellationDate) else if (not(exists(CancellationData/BetEventCancellationDate))) then true() else false() " />
-
-Online_Bonus_Schemas.xsd
-========================
-<xs:assert test="if (exists(BonusEndDate)) then (BonusStartDate le BonusEndDate) else if (not(exists(BonusEndDate))) then exists(BonusStartDate) else false()" />
-
-Online_Contests_Draws.xsd
-=========================
-<xs:assert test="if (exists(ContestEndDate)) then (ContestStartDate le ContestEndDate) else if (not(exists(ContestEndDate))) then exists(ContestStartDate) else false()" />
-
-Online_Customer_Account.xsd
-===========================
-<xs:assert test="if (AccountStatus = 0 or AccountStatus = 1) then not(exists(KYCDate)) else if (AccountStatus gt 1) then exists(KYCDate) else false()" />
+Online_Poker_Tournament_Transactions.xsd
+========================================
+<xs:assert test="if (PTTransactionType = 0 or PTTransactionType = 11 or PTTransactionType = 12 or PTTransactionType = 13 or PTTransactionType = 14 or PTTransactionType = 15) then exists(PTTWithholdingTax) else if (PTTransactionType = 1 or PTTransactionType = 2 or PTTransactionType = 3 or PTTransactionType = 4 or PTTransactionType = 5 or PTTransactionType = 6 or PTTransactionType = 7 or PTTransactionType = 8 or PTTransactionType = 9 or PTTransactionType = 10) then not(exists(PTTWithholdingTax)) else false()" />
+<xs:assert test="if(PTTransactionType = 11 or PTTransactionType = 13 or PTTransactionType = 14) then exists(BonusID) else if (PTTransactionType !=11 and PTTransactionType !=13 and PTTransactionType !=14) then not(exists(BonusID)) else false ()" />
 
 Online_Customer_Account_Transactions.xsd
 ========================================
 <xs:assert test="if (exists(PlayerMeanOfPayments)) then (exists(PlayerPaymentServiceProviderName) and exists(PaymentProviderTransactionID)) else if (not (exists(PlayerMeanOfPayments))) then (not(exists(PlayerPaymentServiceProviderName)) and not(exists(PlayerPaymentServiceProviderCode)) and not(exists(PaymentProviderTransactionID)) and not(exists(PlayerMeanOfPaymentAccountNumber))) else false()" />
 
-Online_EndOfDay_Bettings.xsd
-============================
-<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+Online_Limits_Exceeded.xsd
+==========================
+<xs:assert test="if (LimitCategory ge 1 and LimitCategory le 3) then (exists(ExceededDuration) and not(exists(ExceededAmount))) else if (LimitCategory ge 4 and LimitCategory le 9) then (not(exists(ExceededDuration)) and exists(ExceededAmount)) else if (LimitCategory = 0) then true() else false()" />
+<xs:assert test="if (BetIndicatorLimitExceeded[string(.) eq 'false']) then (exists(GameSessionID) or exists(PtPGameSessionID) or exists(PokerTournamentID) or exists(PTTransactionID)) else if (BetIndicatorLimitExceeded[string(.) eq 'true']) then (not(exists(GameSessionID)) and not(exists(PtPGameSessionID)) and not(exists(PokerTournamentID)) and not (exists(PTTransactionID))) else false() " />
 
-Online_EndOfDay_Games.xsd
-=========================
-<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
-
-Online_EndOfDay_Other.xsd
-=========================
-<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
-
-Online_EndOfDay_PokerTournaments.xsd
-====================================
-<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
-
-Online_EndOfDay_PtP_Games.xsd
-=============================
-<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+Online_Customer_Account.xsd
+===========================
+<xs:assert test="if (AccountStatus = 0 or AccountStatus = 1) then not(exists(KYCDate)) else if (AccountStatus gt 1) then exists(KYCDate) else false()" />
 
 Online_Exclusions.xsd
 =====================
 <xs:assert test="if (exists(ExclusionRequestDate)) then  (ExclusionRequestDate le ExclusionStartDate) else if (not(exists(ExclusionRequestDate))) then true() else false()" />
 <xs:assert test="if (exists(ExclusionEndDate)) then  (ExclusionStartDate le ExclusionEndDate) else if (not(exists(ExclusionEndDate))) then true() else false()" />
 <xs:assert test="if (exists(EndExclusionRequestDate)) then  (EndExclusionRequestDate le ExclusionEndDate) else if (not(exists(EndExclusionRequestDate))) then true() else false()" />
+
+Online_Affiliate_Account_Transactions.xsd
+=========================================
+<xs:assert test="if (exists(AffiliateMeanOfPayments)) then exists(AffiliateMeanOfPaymentProviderName) else if (not(exists(AffiliateMeanOfPayments))) then (not(exists(AffiliateMeanOfPaymentProviderName)) and not(exists(AffiliatePaymentServiceProviderCode)) and not(exists(AffiliateMeanOfPaymentAccountNumber))) else false()" />
 
 Online_Games.xsd
 ================
@@ -67,10 +46,18 @@ Online_Games.xsd
 <xs:assert test="if (exists(BonusID)) then (exists(GameSessionData/Stakes/GameSessionNonRedeemableBonusAmountWagered) or exists(GameSessionData/Winnings/GameSessionNonRedeemableBonusAmountWon) or exists(GameSessionData/Winnings/GameSessionRedeemableBonus)) else if (not(exists(BonusID))) then (not(exists(GameSessionData/Stakes/GameSessionNonRedeemableBonusAmountWagered)) and not(exists(GameSessionData/Winnings/GameSessionNonRedeemableBonusAmountWon)) and not(exists(GameSessionData/Winnings/GameSessionRedeemableBonus))) else false()" />
 <xs:assert test="if (exists(JackpotID)) then exists(GameSessionData/Stakes/GameSessionJackpotRake) else if(not(exists(JackpotID))) then not(exists(GameSessionData/Stakes/GameSessionJackpotRake)) else false()" />
 
-Online_Jackpot_Parameters.xsd
+Online_Bet_Events.xsd
+=====================
+<xs:assert test="if (BetEventCategoryC = 1 or BetEventCategoryC = 2) then exists(BetEventCategoryD) else if (BetEventCategoryC != 1 and BetEventCategoryC != 2) then not(exists(BetEventCategoryD)) else false() " />
+<xs:assert test="(BetEventType = 1 and exists(MainBetEventID)) or (BetEventType = 0 and not (exists(MainBetEventID)))" />
+<xs:assert test="if (BetEventCategoryC = 2) then not(exists(CountryISOCode)) else if (BetEventCategoryC = 1) then exists(CountryISOCode) else if (BetEventCategoryC = 3 or BetEventCategoryC = 4) then (exists(CountryISOCode) or not(exists(CountryISOCode))) else false() " />
+<xs:assert test="if (exists(BetEventResultDate)) then (BetEventCreationDate lt BetEventResultDate) else if (not (exists(BetEventResultDate))) then true() else false() " />
+<xs:assert test="if (CancellationData/BetEventCancellation[string(.) eq 'true']) then exists(CancellationData/BetEventCancellationDate) else if (CancellationData/BetEventCancellation[string(.) eq 'false']) then (not(exists(CancellationData/BetEventCancellationDate))) else false()" />
+<xs:assert test="if (exists(CancellationData/BetEventCancellationDate)) then (BetEventCreationDate lt CancellationData/BetEventCancellationDate) else if (not(exists(CancellationData/BetEventCancellationDate))) then true() else false() " />
+
+Online_EndOfDay_PtP_Games.xsd
 =============================
-<xs:assert test="ProfitDistributionLevelCount = count((ProfitDistributionLevelData/ProfitDistributionLevelID))" />
-<xs:assert test="PaytableIDCount = count((PaytableID))" />
+<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
 
 Online_Limits.xsd
 =================
@@ -78,32 +65,45 @@ Online_Limits.xsd
 <xs:assert test="LimitCreationDate le LimitStartDate" />
 <xs:assert test="if(LimitCategory ge 1 and LimitCategory le 3) then (exists(NewLimitDuration) and not(exists(NewLimitAmount)) and not(exists(OldLimitAmount))) else if (LimitCategory ge 4 and LimitCategory le 9) then (not(exists(NewLimitDuration)) and not(exists(OldLimitDuration)) and exists(NewLimitAmount)) else if(LimitCategory = 0) then true() else false()" />
 
-Online_Limits_Exceeded.xsd
-==========================
-<xs:assert test="if (LimitCategory ge 1 and LimitCategory le 3) then (exists(ExceededDuration) and not(exists(ExceededAmount))) else if (LimitCategory ge 4 and LimitCategory le 9) then (not(exists(ExceededDuration)) and exists(ExceededAmount)) else if (LimitCategory = 0) then true() else false()" />
-<xs:assert test="if (BetIndicatorLimitExceeded[string(.) eq 'false']) then (exists(GameSessionID) or exists(PtPGameSessionID) or exists(PokerTournamentID) or exists(PTTransactionID)) else if (BetIndicatorLimitExceeded[string(.) eq 'true']) then (not(exists(GameSessionID)) and not(exists(PtPGameSessionID)) and not(exists(PokerTournamentID)) and not (exists(PTTransactionID))) else false() " />
-
-Online_Log_In_Sessions.xsd
-==========================
-<xs:assert test="LoginSessionStartDate le LoginSessionEndDate" />
-
-Online_Peer_to_Peer_Games.xsd
-=============================
-<xs:assert test="PtPGameSessionStartDate le PtPGameSessionEndDate" />
-<xs:assert test="(not(exists(PtPGameCategoryA))) or (PtPGameCategoryA = 1 and exists(LiveGames)) or (PtPGameCategoryA != 1 and not(exists(LiveGames)))" />
-<xs:assert test="if (exists(BonusID)) then (exists(PtPGameSessionData/Stakes/PtPGameSessionNonRedeemableBonusAmountWagered) or exists(PtPGameSessionData/Winnings/PtPGameSessionRedeemableRakeBackBonus) or exists(PtPGameSessionData/Winnings/PtPGameSessionNonRedeemableBonusAmountWon)) else if(not(exists(BonusID))) then (not(exists(PtPGameSessionData/Stakes/PtPGameSessionNonRedeemableBonusAmountWagered)) and not(exists(PtPGameSessionData/Winnings/PtPGameSessionRedeemableRakeBackBonus)) and not(exists(PtPGameSessionData/Winnings/PtPGameSessionNonRedeemableBonusAmountWon))) else false()" />
-<xs:assert test="if (exists(JackpotID)) then exists(PtPGameSessionData/Stakes/PtPGameSessionJackpotRake) else if (not(exists(JackpotID))) then (not(exists(PtPGameSessionData/Stakes/PtPGameSessionJackpotRake))) else false()" />
-
-Online_Poker_Tournament_Start.xsd
-=================================
-<xs:assert test="if (exists(PTEstimatedEndDate)) then (PTStartDate lt PTEstimatedEndDate) else if (not(exists(PTEstimatedEndDate))) then true() else false() " />
-
-Online_Poker_Tournament_Transactions.xsd
-========================================
-<xs:assert test="if (PTTransactionType = 0 or PTTransactionType = 11 or PTTransactionType = 12 or PTTransactionType = 13 or PTTransactionType = 14 or PTTransactionType = 15) then exists(PTTWithholdingTax) else if (PTTransactionType = 1 or PTTransactionType = 2 or PTTransactionType = 3 or PTTransactionType = 4 or PTTransactionType = 5 or PTTransactionType = 6 or PTTransactionType = 7 or PTTransactionType = 8 or PTTransactionType = 9 or PTTransactionType = 10) then not(exists(PTTWithholdingTax)) else false()" />
-<xs:assert test="if(PTTransactionType = 11 or PTTransactionType = 13 or PTTransactionType = 14) then exists(BonusID) else if (PTTransactionType !=11 and PTTransactionType !=13 and PTTransactionType !=14) then not(exists(BonusID)) else false ()" />
+Online_Contests_Draws.xsd
+=========================
+<xs:assert test="if (exists(ContestEndDate)) then (ContestStartDate le ContestEndDate) else if (not(exists(ContestEndDate))) then exists(ContestStartDate) else false()" />
 
 Online_Taxation_Sessions.xsd
 ============================
 <xs:assert test="TaxationSessionStartDate le TaxationSessionEndDate" />
+
+Online_Bonus_Schemas.xsd
+========================
+<xs:assert test="if (exists(BonusEndDate)) then (BonusStartDate le BonusEndDate) else if (not(exists(BonusEndDate))) then exists(BonusStartDate) else false()" />
+
+Online_EndOfDay_PokerTournaments.xsd
+====================================
+<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+
+Online_Bettings.xsd
+===================
+<xs:assert test="if (exists(EstimatedBetSettlementDate)) then (BetPlacedDate lt EstimatedBetSettlementDate) else if (not (exists(EstimatedBetSettlementDate))) then true() else false() " />
+<xs:assert test="if (exists(BonusID)) then exists(BetData/NonRedeemableBonusAmountWagered) else if (not (exists(BonusID))) then (not(exists(BetData/NonRedeemableBonusAmountWagered))) else false()" />
+
+Online_EndOfDay_Bettings.xsd
+============================
+<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+
+Online_EndOfDay_Other.xsd
+=========================
+<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+
+Online_Jackpot_Parameters.xsd
+=============================
+<xs:assert test="ProfitDistributionLevelCount = count((ProfitDistributionLevelData/ProfitDistributionLevelID))" />
+<xs:assert test="PaytableIDCount = count((PaytableID))" />
+
+Online_EndOfDay_Games.xsd
+=========================
+<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+
+Online_Log_In_Sessions.xsd
+==========================
+<xs:assert test="LoginSessionStartDate le LoginSessionEndDate" />
 
