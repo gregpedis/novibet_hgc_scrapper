@@ -77,6 +77,10 @@ Online_Bonus_Schemas.xsd
 ========================
 <xs:assert test="if (exists(BonusEndDate)) then (BonusStartDate le BonusEndDate) else if (not(exists(BonusEndDate))) then exists(BonusStartDate) else false()" />
 
+Online_EndOfDay_PokerTournaments.xsd
+====================================
+<xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+
 Online_Bettings.xsd
 ===================
 <xs:assert test="if (exists(EstimatedBetSettlementDate)) then (BetPlacedDate lt EstimatedBetSettlementDate) else if (not (exists(EstimatedBetSettlementDate))) then true() else false() " />
@@ -89,6 +93,11 @@ Online_EndOfDay_Bettings.xsd
 Online_EndOfDay_Other.xsd
 =========================
 <xs:assert test="if (not(exists(CancelledRecordData))) then (ReportDate le ReportCreationDate) else if (exists(CancelledRecordData)) then (not(exists(ReportDate)) and not(exists(ReportCreationDate))) else false()" />
+
+Online_Jackpot_Parameters.xsd
+=============================
+<xs:assert test="ProfitDistributionLevelCount = count((ProfitDistributionLevelData/ProfitDistributionLevelID))" />
+<xs:assert test="PaytableIDCount = count((PaytableID))" />
 
 Online_EndOfDay_Games.xsd
 =========================
