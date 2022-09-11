@@ -5,8 +5,8 @@
     <xs:element name="Batch">
         <xs:annotation>
             <xs:documentation>Συχνότητα καταγραφής στο SAFE / Frequency:
-(1) Κάθε δύο (2) ώρες κατ' ελάχιστο.
-(1) Minimum, every two (2) hours.</xs:documentation>
+(1) Κάθε 1η και 15η του εκάστοτε μήνα, κατ' ελάχιστο.
+(1) Minimum, every 1st and 15th of each month.</xs:documentation>
         </xs:annotation>
         <xs:complexType>
             <xs:sequence>

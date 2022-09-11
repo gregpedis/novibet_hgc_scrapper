@@ -135,7 +135,7 @@ The values are granted by HGC. Allowed values:
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:element>
-                                                <xs:element name="BonusCategoryB" type="mstns:CollapsedGenericID">
+                                                <xs:element name="BonusCategoryB" type="mstns:CollapsedGenericID" maxOccurs="unbounded">
                                                     <xs:annotation>
                                                         <xs:documentation>Περαιτέρω Κατηγοριοποίηση Επιβραβεύσεων:
 Περαιτέρω κατηγοριοποίηση που καθορίζεται από τον Κάτοχο Άδειας, όπως καταγράφεται στα συστήματά του (π.χ. No Deposit Bonus, Match Deposit Bonus, Referral Bonus, Cash Back Bonus, Rake Back Bonus).

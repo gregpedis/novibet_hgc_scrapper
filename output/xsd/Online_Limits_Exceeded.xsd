@@ -26,6 +26,7 @@
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:sequence>
+                                    <xs:element name="ReplacedRecordID" type="mstns:RecordID" minOccurs="0" />
                                     <xs:element name="PlayerID" type="mstns:PlayerID" />
                                     <xs:element name="LimitsExceeded" maxOccurs="unbounded">
                                         <xs:complexType>
@@ -71,6 +72,30 @@ The category of the limit. Values are granted by HGC. Allowed Values:
                                                             <xs:enumeration value="7" />
                                                             <xs:enumeration value="8" />
                                                             <xs:enumeration value="9" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element name="GameType">
+                                                    <xs:annotation>
+                                                        <xs:documentation>
+                                                            Κατηγορία Παιγνίου στο οποίο εφαρμόζεται το όριο:
+                                                            Οι τιμές καθορίζονται από την Ε.Ε.Ε.Π.. Επιτρεπόμενες τιμές:
+                                                            (1) = Παίγνιο Στοιχήματος (Άδεια Τύπου 1)
+                                                            (2) = Λοιπά Διαδικτυακά Παίγνια (Άδεια Τύπου 2)
+                                                            (0) = Εφαρμογή και στους δύο τύπους παιγνίων
+
+                                                            Game Category in which the limit is applied:
+                                                            Values are granted by HGC. Allowed Values:
+                                                            (1) = Betting (License Type 1)
+                                                            (2) = Other Online Game (License Type 2)
+                                                            (0) = Both
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:enumeration value="0" />
+                                                            <xs:enumeration value="1" />
+                                                            <xs:enumeration value="2" />
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:element>
@@ -191,7 +216,6 @@ Unique identifier of the Player Transaction in a Poker Tournament, where the Pla
                                                 </xs:choice>
                                             </xs:sequence>
                                             <xs:assert test="if (LimitCategory ge 1 and LimitCategory le 3) then (exists(ExceededDuration) and not(exists(ExceededAmount))) else if (LimitCategory ge 4 and LimitCategory le 9) then (not(exists(ExceededDuration)) and exists(ExceededAmount)) else if (LimitCategory = 0) then true() else false()" />
-                                            <xs:assert test="if (BetIndicatorLimitExceeded[string(.) eq 'false']) then (exists(GameSessionID) or exists(PtPGameSessionID) or exists(PokerTournamentID) or exists(PTTransactionID)) else if (BetIndicatorLimitExceeded[string(.) eq 'true']) then (not(exists(GameSessionID)) and not(exists(PtPGameSessionID)) and not(exists(PokerTournamentID)) and not (exists(PTTransactionID))) else false() " />
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>

@@ -59,6 +59,13 @@ The structure of the identifier is elXXXXXXXXX where Χ are numbers from 0 to 9<
             <xs:whiteSpace value="collapse" />
         </xs:restriction>
     </xs:simpleType>
+    <xs:simpleType name="ExtraSmallString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1" />
+            <xs:maxLength value="40" />
+            <xs:whiteSpace value="collapse" />
+        </xs:restriction>
+    </xs:simpleType>
     <xs:simpleType name="GenericID">
         <xs:restriction base="xs:string">
             <xs:whiteSpace value="preserve" />
@@ -378,5 +385,5 @@ Unique identifier of a bet, granted by the Licensee.</xs:documentation>
             <xs:enumeration value="3" />
             <xs:enumeration value="4" />
         </xs:restriction>
-        </xs:simpleType>
+    </xs:simpleType>
 </xs:schema>

@@ -8,8 +8,8 @@
 (1) Όποτε προστίθενται νέοι Συνεργάτες.
 (1) Whenever new Affiliates are added.
 
-(2) Όποτε υπάρχουν αλλαγές σε δεδομένα Συνεργατών.
-(2) Whenever information regarding Affiliates, changes.
+(2) Κάθε 1η και 15η του εκάστοτε μήνα, κατ' ελάχιστο.
+(2) Minimum, every 1st and 15th of each month.
 </xs:documentation>
         </xs:annotation>
         <xs:complexType>

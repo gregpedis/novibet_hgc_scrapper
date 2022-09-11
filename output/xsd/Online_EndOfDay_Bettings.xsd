@@ -74,25 +74,29 @@
                                                 (4) = Other Events
                                             </xs:documentation>
                                         </xs:annotation>
-                                        </xs:element>
+                                    </xs:element>
                                     <xs:element name="BetEventCategoryB">
                                         <xs:annotation>
                                             <xs:documentation>
                                             Κατηγορία Στοιχηματικών Γεγονότων (B):
+                                                
                                             Δεύτερο (B) επίπεδο κατηγοριοποίησης των στοιχηματικών γεγονότων. Οι τιμές καθορίζονται από την Ε.Ε.Ε.Π.. Επιτρεπόμενες τιμές:
-                                            (1) = Στοίχημα
-                                            (2) = Live Στοίχημα
-
+                                            (1) = Pre Game
+                                            (2) = In Play
+                                            (3) = Pre Game and In Play
+                                            
                                             Bet Events Category (B):
                                             Second (B) level of bet events categorization. Values are granted by HGC. Allowed values:
-                                            (1) = Betting
-                                            (2) = In Play Betting
+                                            (1) = Pre Game
+                                            (2) = In Play
+                                            (3) = Pre Game and In Play
                                         </xs:documentation>
                                         </xs:annotation>
                                         <xs:simpleType>
                                             <xs:restriction base="xs:positiveInteger">
                                                 <xs:enumeration value="1" />
                                                 <xs:enumeration value="2" />
+                                                <xs:enumeration value="3" />
                                             </xs:restriction>
                                         </xs:simpleType>
                                     </xs:element>
@@ -167,7 +171,6 @@
                                             </xs:documentation>
                                         </xs:annotation>
                                     </xs:element>
-                                    
                                     <xs:element name="TotalNumberPlayersWon" type="mstns:NumberOfPlayers">
                                         <xs:annotation>
                                             <xs:documentation>

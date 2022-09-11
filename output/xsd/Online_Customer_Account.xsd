@@ -308,8 +308,8 @@ The post code of Player's address, as it has been declared in Licensee's systems
                                                     </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="xs:string">
-                                                            <xs:length value="15" />
                                                             <xs:whiteSpace value="preserve" />
+                                                            <xs:maxLength value="15" />
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:element>
@@ -390,7 +390,7 @@ Date and time the relationship between the Player and the Affiliate was establis
                                                     </xs:complexType>
                                                 </xs:element>
                                             </xs:sequence>
-                                            <xs:assert test="if (AccountStatus = 0 or AccountStatus = 1) then not(exists(KYCDate)) else if (AccountStatus gt 1) then exists(KYCDate) else false()" />
+                                            <xs:assert test="if (AccountStatus = 1) then not(exists(KYCDate)) else if (AccountStatus gt 1) then exists(KYCDate) else false()" />
                                         </xs:complexType>
                                     </xs:element>
                                 </xs:sequence>

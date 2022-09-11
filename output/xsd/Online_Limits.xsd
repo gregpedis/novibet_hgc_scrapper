@@ -31,7 +31,7 @@
                                     </xs:complexType>
                                 </xs:element>
                                 <xs:sequence>
-                                    <xs:element name="ReplacedRecordID" type="mstns:RecordID" minOccurs="0"/>
+                                    <xs:element name="ReplacedRecordID" type="mstns:RecordID" minOccurs="0" />
                                     <xs:element name="PlayerID" type="mstns:PlayerID" />
                                     <xs:element name="Limits" maxOccurs="unbounded">
                                         <xs:complexType>
@@ -76,6 +76,30 @@ The category of the limit. Values are granted by HGC. Allowed Values:
                                                             <xs:enumeration value="7" />
                                                             <xs:enumeration value="8" />
                                                             <xs:enumeration value="9" />
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:element>
+                                                <xs:element name="GameType">
+                                                    <xs:annotation>
+                                                        <xs:documentation>
+                                                            Κατηγορία Παιγνίου στο οποίο εφαρμόζεται το όριο:
+Οι τιμές καθορίζονται από την Ε.Ε.Ε.Π.. Επιτρεπόμενες τιμές:
+(1) = Παίγνιο Στοιχήματος (Άδεια Τύπου 1) 
+(2) = Λοιπά Διαδικτυακά Παίγνια (Άδεια Τύπου 2)
+(0) = Εφαρμογή και στους δύο τύπους παιγνίων 
+
+Game Category in which the limit is applied:
+Values are granted by HGC. Allowed Values:
+(1) = Betting (License Type 1)
+(2) = Other Online Game (License Type 2)
+(0) = Both
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:nonNegativeInteger">
+                                                            <xs:enumeration value="0" />
+                                                            <xs:enumeration value="1" />
+                                                            <xs:enumeration value="2" />
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:element>
@@ -187,7 +211,7 @@ The initiator that sets the limit. Values are granted by HGC. Allowed Values:
                                                 </xs:element>
                                                 <xs:element name="LogInSessionID" type="mstns:LogInSessionID" minOccurs="0" />
                                             </xs:sequence>
-                                            <xs:assert test="if (exists(LimitChangeDate)) then (LimitChangeDate ge LimitStartDate) else if (not(exists(LimitChangeDate))) then true() else false()" />
+                                            <xs:assert test="if (exists(LimitChangeDate)) then (LimitChangeDate ge LimitCreationDate) else if (not(exists(LimitChangeDate))) then true() else false()" />
                                             <xs:assert test="LimitCreationDate le LimitStartDate" />
                                             <xs:assert test="if(LimitCategory ge 1 and LimitCategory le 3) then (exists(NewLimitDuration) and not(exists(NewLimitAmount)) and not(exists(OldLimitAmount))) else if (LimitCategory ge 4 and LimitCategory le 9) then (not(exists(NewLimitDuration)) and not(exists(OldLimitDuration)) and exists(NewLimitAmount)) else if(LimitCategory = 0) then true() else false()" />
                                         </xs:complexType>

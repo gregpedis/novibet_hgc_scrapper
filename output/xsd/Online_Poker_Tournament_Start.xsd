@@ -69,7 +69,7 @@ Values are granted by HGC. Allowed values:
                                        Παίγνια Τουρνουά Πόκερ:
 Οι τιμές καθορίζονται από την Ε.Ε.Ε.Π.. Επιτρεπόμενες τιμές:
 (1) = Texas Hold'em
-(2) = Omaha Hi/Lo
+(2) = Omaha
 (3) = Five Card Draw
 (4) = Razz
 (5) = 7Card Stud
@@ -80,7 +80,7 @@ Values are granted by HGC. Allowed values:
 Poker Tournament Games:
 Values are granted by HGC. Allowed values:
 (1) = Texas Hold'em
-(2) = Omaha Hi/Lo
+(2) = Omaha
 (3) = Five Card Draw
 (4) = Razz
 (5) = 7Card Stud

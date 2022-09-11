@@ -315,11 +315,11 @@ The ID refers to the certification number provided by the HGC's certification de
                                                         <xs:annotation>
                                                             <xs:documentation>
                                                        Κωδικός Ειδικού Χώρου Διεξαγωγής Παιγνίου:
-Ο μοναδικός κωδικός του Ειδικού Χώρου (Studio) διεξαγωγής του Παιγνίου, τον οποίο αποδίδει ο Κάτοχος Άδειας.
+Ο μοναδικός κωδικός του Ειδικού Χώρου (Studio) διεξαγωγής του Παιγνίου, τον οποίο αποδίδει η Ε.Ε.Ε.Π.
 (όταν το πεδίο  "GameCategoryA" = 1)
 
 Studio Identification Number:
-The unique identification number of the Studio the Game was held, provided by the Licensee.
+The unique identification number of the Studio the Game was held, provided by HGC.
 (when "GameCategoryA" = 1) 
                                                     </xs:documentation>
                                                         </xs:annotation>

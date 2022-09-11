@@ -21,11 +21,10 @@ Online_Customer_Account_Transactions.xsd
 Online_Limits_Exceeded.xsd
 ==========================
 <xs:assert test="if (LimitCategory ge 1 and LimitCategory le 3) then (exists(ExceededDuration) and not(exists(ExceededAmount))) else if (LimitCategory ge 4 and LimitCategory le 9) then (not(exists(ExceededDuration)) and exists(ExceededAmount)) else if (LimitCategory = 0) then true() else false()" />
-<xs:assert test="if (BetIndicatorLimitExceeded[string(.) eq 'false']) then (exists(GameSessionID) or exists(PtPGameSessionID) or exists(PokerTournamentID) or exists(PTTransactionID)) else if (BetIndicatorLimitExceeded[string(.) eq 'true']) then (not(exists(GameSessionID)) and not(exists(PtPGameSessionID)) and not(exists(PokerTournamentID)) and not (exists(PTTransactionID))) else false() " />
 
 Online_Customer_Account.xsd
 ===========================
-<xs:assert test="if (AccountStatus = 0 or AccountStatus = 1) then not(exists(KYCDate)) else if (AccountStatus gt 1) then exists(KYCDate) else false()" />
+<xs:assert test="if (AccountStatus = 1) then not(exists(KYCDate)) else if (AccountStatus gt 1) then exists(KYCDate) else false()" />
 
 Online_Exclusions.xsd
 =====================
@@ -46,10 +45,13 @@ Online_Games.xsd
 <xs:assert test="if (exists(BonusID)) then (exists(GameSessionData/Stakes/GameSessionNonRedeemableBonusAmountWagered) or exists(GameSessionData/Winnings/GameSessionNonRedeemableBonusAmountWon) or exists(GameSessionData/Winnings/GameSessionRedeemableBonus)) else if (not(exists(BonusID))) then (not(exists(GameSessionData/Stakes/GameSessionNonRedeemableBonusAmountWagered)) and not(exists(GameSessionData/Winnings/GameSessionNonRedeemableBonusAmountWon)) and not(exists(GameSessionData/Winnings/GameSessionRedeemableBonus))) else false()" />
 <xs:assert test="if (exists(JackpotID)) then exists(GameSessionData/Stakes/GameSessionJackpotRake) else if(not(exists(JackpotID))) then not(exists(GameSessionData/Stakes/GameSessionJackpotRake)) else false()" />
 
+Online_Betting_Winnings.xsd
+===========================
+<xs:assert test="if (BetStatus = 1 or BetStatus = 2 or BetStatus = 3 or BetStatus = 4 or BetStatus = 0) then exists(ActualBetSettlementDate) else if (BetStatus = 5) then not(exists(ActualBetSettlementDate)) else false()  " />
+
 Online_Bet_Events.xsd
 =====================
 <xs:assert test="if (BetEventCategoryC = 1 or BetEventCategoryC = 2) then exists(BetEventCategoryD) else if (BetEventCategoryC != 1 and BetEventCategoryC != 2) then not(exists(BetEventCategoryD)) else false() " />
-<xs:assert test="(BetEventType = 1 and exists(MainBetEventID)) or (BetEventType = 0 and not (exists(MainBetEventID)))" />
 <xs:assert test="if (BetEventCategoryC = 2) then not(exists(CountryISOCode)) else if (BetEventCategoryC = 1) then exists(CountryISOCode) else if (BetEventCategoryC = 3 or BetEventCategoryC = 4) then (exists(CountryISOCode) or not(exists(CountryISOCode))) else false() " />
 <xs:assert test="if (exists(BetEventResultDate)) then (BetEventCreationDate lt BetEventResultDate) else if (not (exists(BetEventResultDate))) then true() else false() " />
 <xs:assert test="if (CancellationData/BetEventCancellation[string(.) eq 'true']) then exists(CancellationData/BetEventCancellationDate) else if (CancellationData/BetEventCancellation[string(.) eq 'false']) then (not(exists(CancellationData/BetEventCancellationDate))) else false()" />
@@ -61,7 +63,7 @@ Online_EndOfDay_PtP_Games.xsd
 
 Online_Limits.xsd
 =================
-<xs:assert test="if (exists(LimitChangeDate)) then (LimitChangeDate ge LimitStartDate) else if (not(exists(LimitChangeDate))) then true() else false()" />
+<xs:assert test="if (exists(LimitChangeDate)) then (LimitChangeDate ge LimitCreationDate) else if (not(exists(LimitChangeDate))) then true() else false()" />
 <xs:assert test="LimitCreationDate le LimitStartDate" />
 <xs:assert test="if(LimitCategory ge 1 and LimitCategory le 3) then (exists(NewLimitDuration) and not(exists(NewLimitAmount)) and not(exists(OldLimitAmount))) else if (LimitCategory ge 4 and LimitCategory le 9) then (not(exists(NewLimitDuration)) and not(exists(OldLimitDuration)) and exists(NewLimitAmount)) else if(LimitCategory = 0) then true() else false()" />
 

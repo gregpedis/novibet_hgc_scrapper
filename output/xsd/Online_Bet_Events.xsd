@@ -9,10 +9,14 @@
 (1) whenever new bet events are added.
 
 (2) Όποτε υπάρχουν αλλαγές σε υφιστάμενα στοιχηματικά γεγονότα
-(2) whenever information regarding existing bet events, changes.
+(2) Whenever information regarding existing bet events changes.
             
 (3) Κάθε δύο (2) ώρες κατ' ελάχιστο.
 (3) Minimum, every two (2) hours.
+                
+Σχόλια / Comments:
+(1) Το MarketID είναι ο μοναδικός κωδικός αγοράς που δίνεται από τον Κάτοχο και ισχύει για όλα τα στοιχηματικά γεγονότα στα οποία προσφέρεται η συγκεκριμένη αγορά.
+(1) MarketID is the unique identifier of Market given by the Licensee. The same MarkedID applies to all events that the specific market is offered.
             </xs:documentation>
         </xs:annotation>
         <xs:complexType>
@@ -40,33 +44,61 @@
                                                 <xs:element name="BetEventID" type="mstns:GenericID">
                                                     <xs:annotation>
                                                         <xs:documentation>Κωδικός Στοιχηματικού Γεγονότος:
-Ο μοναδικός κωδικός στοιχηματικού γεγονότος, τον οποίο αποδίδει ο Κάτοχος Άδειας.
+Ο μοναδικός κωδικός στοιχηματικού γεγονότος (BetEventName), τον οποίο αποδίδει ο Κάτοχος Άδειας.
 
 Bet Event Identifier:
-Unique identifier of a Bet Event, granted by the Licensee.</xs:documentation>
-                                                    </xs:annotation>
-                                                </xs:element>
-                                                <xs:element name="HGCBetEventID" type="mstns:CollapsedGenericID" minOccurs="0">
-                                                    <xs:annotation>
-                                                        <xs:documentation>
-                                                            Κωδικός Στοιχηματικού Γεγονότος:
-                                                            Ο μοναδικός κωδικός στοιχηματικού γεγονότος, τον οποίο αποδίδει η Ε.Ε.Ε.Π..
-                                                            (εάν υφίσταται)
-
-                                                            Bet Event Identifier:
-                                                            Unique identifier of a Bet Event, granted by the HGC.
-                                                            (if applicable)
-                                                        </xs:documentation>
+Unique identifier of a Bet Event (BetEventName), granted by the Licensee.</xs:documentation>
                                                     </xs:annotation>
                                                 </xs:element>
                                                 <xs:element name="BetEventName" type="mstns:LongString">
                                                     <xs:annotation>
-                                                        <xs:documentation>Όνομα Στοιχηματικού Γεγονότος:
-Σύντομη περιγραφή του στοιχηματικού γεγονότος όπως εμφανίζεται στους ιστοτόπους/ονόματα χώρου του Κατόχου Άδειας (π.χ.: Ποδόσφαιρο - Ισπανία - Copa del Rey UD Ίμπιζα - Μπαρτσελόνα-Γκολ Over/Under(extra) - Over 1.5.)
+                                                        <xs:documentation>'Όνομα Στοιχηματικού Γεγονότος:
+Σύντομη περιγραφή του στοιχηματικού γεγονότος όπως εμφανίζεται στους ιστοτόπους/ονόματα χώρου του Κατόχου Άδειας. Να περιλαμβάνονται οι πληροφορίες για Άθλημα-Χώρα-Διοργάνωση-Ονομασία Γεγονότος (π.χ.: Ποδόσφαιρο - Ισπανία - Copa del Rey UD Ίμπιζα - Μπαρτσελόνα).
 
 Bet Event Name:
-A sort description of the bet event, as it is displayed in the related Licensee's web pages (e.g.: Football - Spain - Copa del Rey - Ibiza -Barcelona - score Over/Under(extra) - Over 1.5.)</xs:documentation>
+A short description of the bet event, as it is displayed in the related Licensee's web pages. Sports – Country – Tournament/League - Event should be included(e.g.: Football - Spain - Copa del Rey - Ibiza -Barcelona).</xs:documentation>
                                                     </xs:annotation>
+                                                </xs:element>
+                                                <xs:element name="BetEventNameData" maxOccurs="unbounded">
+                                                    <xs:complexType>
+                                                        <xs:sequence>
+                                                            <xs:element name="HGCMarketID" type="mstns:CollapsedGenericID" minOccurs="0">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>
+                                                                       Κωδικός Αγοράς:
+                                                                    Ο μοναδικός κωδικός της προσφερόμενης Αγοράς, τον οποίο αποδίδει η Ε.Ε.Ε.Π..
+                                                                    (εάν υφίσταται)
+                                                                    
+                                                                    Market Identifier:
+                                                                    Unique identifier of the offered Market, granted by the HGC.
+                                                                    (if applicable)
+                                                                    </xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:element>
+                                                            <xs:element name="MarketID" type="mstns:GenericID">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>
+                                                                        Κωδικός Αγοράς:
+                                                                    Ο μοναδικός κωδικός της προσφερόμενης Αγοράς, τον οποίο αποδίδει ο Κάτοχος Άδειας.
+                                                                    
+                                                                    Market Identifier:
+                                                                    Unique identifier of the offered Market, granted by the Licensee.
+                                                                    </xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:element>
+                                                            <xs:element name="MarketName" type="mstns:LongString">
+                                                                <xs:annotation>
+                                                                    <xs:documentation>
+                                                                       Όνομα Αγοράς
+Η ονομασία της Αγοράς που προσφέρεται στο στοιχηματικό γεγονός (π.χ.: Γκολ Over/Under(extra), Player to be booked).
+
+Market Name
+The name of the offered Market of the Bet Event  (e.g.:  score Over/Under(extra), Player to be booked).
+                                                                    </xs:documentation>
+                                                                </xs:annotation>
+                                                            </xs:element>
+                                                        </xs:sequence>
+                                                    </xs:complexType>
                                                 </xs:element>
                                                 <xs:element name="BetEventCategoryA" type="mstns:BetEventCategoryA">
                                                     <xs:annotation>
@@ -89,18 +121,21 @@ First (A) level of bet events categorization in accordance with Gaming Regulatio
                                                     <xs:annotation>
                                                         <xs:documentation>Κατηγορία Στοιχηματικών Γεγονότων (B):
 Δεύτερο (B) επίπεδο κατηγοριοποίησης των στοιχηματικών γεγονότων. Οι τιμές καθορίζονται από την Ε.Ε.Ε.Π.. Επιτρεπόμενες τιμές:
-(1) = Στοίχημα
-(2) = Ζωντανό Στοίχημα
+(1) = Pre Game
+(2) = In Play
+(3) =  Pre Game and In Play
 
 Bet Events Category (B):
 Second (B) level of bet events categorization. Values are granted by HGC. Allowed values:
-(1) = Betting
-(2) = In Play Betting</xs:documentation>
+(1) = Pre Game
+(2) = In Play
+(3) =  Pre Game and In Play</xs:documentation>
                                                     </xs:annotation>
                                                     <xs:simpleType>
                                                         <xs:restriction base="xs:positiveInteger">
                                                             <xs:enumeration value="1" />
                                                             <xs:enumeration value="2" />
+                                                            <xs:enumeration value="3" />
                                                         </xs:restriction>
                                                     </xs:simpleType>
                                                 </xs:element>
@@ -168,40 +203,6 @@ The ISO (ISO 3166-1, alpha 3 code) code of the country that the bet events are r
 (if applicable)</xs:documentation>
                                                     </xs:annotation>
                                                 </xs:element>
-                                                <xs:element name="BetEventType">
-                                                    <xs:annotation>
-                                                        <xs:documentation>Τύπος Στοιχηματικών Γεγονότων:
-Οι τιμές καθορίζονται από την Ε.Ε.Ε.Π.. Επιτρεπόμενες τιμές:
-(0) = Κύριο στοιχηματικό γεγονός. Δεν διασυνδέεται με κάποιο άλλο κύριο στοιχηματικό γεγονός. 
-(π.χ.: Arsenal vs Liverpool)
-(1) = Δευτερεύον στοιχηματικό γεγονός (αγορές). Διασυνδέεται με κάποιο άλλο κύριο στοιχηματικό γεγονός.
-(π.χ.: score of Arsenal vs Liverpool at the end of the 1st half).
-
-Bet Event Type:
-Values are granted by HGC. Allowed values:
-(0) = Main bet event. It is not related to any other main bet event. (eg Arsenal vs Liverpool)
-(1) = Secondary bet event (bet markets). It is related to any other main bet event. (eg: score of Arsenal vs Liverpool at the end of the 1st half).</xs:documentation>
-                                                    </xs:annotation>
-                                                    <xs:simpleType>
-                                                        <xs:restriction base="xs:nonNegativeInteger">
-                                                            <xs:enumeration value="0" />
-                                                            <xs:enumeration value="1" />
-                                                        </xs:restriction>
-                                                    </xs:simpleType>
-                                                </xs:element>
-                                                <xs:element name="MainBetEventID" type="mstns:GenericID" minOccurs="0">
-                                                    <xs:annotation>
-                                                        <xs:documentation>Κωδικός Κύριου Στοιχηματικού Γεγονότος:
-Ο μοναδικός κωδικός του κύριου στοιχηματικού γεγονότος, τον οποίο αποδίδει ο Κάτοχος Άδειας.
-Το πεδίο συμπληρώνεται εφόσον το BetEventType έχει την τιμή (1), δηλαδή, η εγγραφή αφορά Δευτερεύον Στοιχηματικό Γεγονός.
-(εάν υφίσταται)
-
-Main Bet Event ID:
-Unique identifier of a bet event, granted by the Licensee.
-When the field 'BetEventType' gets the value (1), the field must have a value.
-(if applicable)</xs:documentation>
-                                                    </xs:annotation>
-                                                </xs:element>
                                                 <xs:element name="BetEventCreationDate" type="mstns:dateTimeUTC">
                                                     <xs:annotation>
                                                         <xs:documentation>Ημερομηνία Δημιουργίας Στοιχηματικού Γεγονότος:
@@ -211,14 +212,27 @@ Bet Event Creation Date:
 Date and time the bet event became available to the Players, through Licensee's systems.</xs:documentation>
                                                     </xs:annotation>
                                                 </xs:element>
+                                                <xs:element name="BetEventDate" type="mstns:dateTimeUTC" minOccurs="0">
+                                                    <xs:annotation>
+                                                        <xs:documentation>
+                                                            Ημερομηνία Διεξαγωγής Στοιχηματικού Γεγονότος:
+                                                        Η ημερομηνία και ώρα που διεξάγεται το στοιχηματικό γεγονότος (UTC).
+                                                        (εάν υφίσταται)
+                                                        
+                                                        Bet Event Date:
+                                                        Date and time that the event will take place (UTC).
+                                                        (if applicable)
+                                                        </xs:documentation>
+                                                    </xs:annotation>
+                                                </xs:element>
                                                 <xs:element name="BetEventResultDate" type="mstns:dateTimeUTC" minOccurs="0">
                                                     <xs:annotation>
                                                         <xs:documentation>Ημερομηνία Αποτελέσματος Στοιχηματικού Γεγονότος:
-Η ημερομηνία και ώρα που το αποτέλεσμα του στοιχηματικού γεγονότος έγινε γνωστό (UTC).
+Η εκτιμώμενη ημερομηνία και ώρα που το αποτέλεσμα του στοιχηματικού γεγονότος θα γίνει γνωστό (UTC).
 (εάν υφίσταται)
 
 Bet Event Result Date:
-Date and time that the result of the bet event was set (UTC).
+Estimated date and time that the result of the bet event will be set (end of fixture) (UTC).
 (if applicable)</xs:documentation>
                                                     </xs:annotation>
                                                 </xs:element>
@@ -267,7 +281,6 @@ Date and time a bet event was canceled (UTC).
                                                 </xs:element>
                                             </xs:sequence>
                                             <xs:assert test="if (BetEventCategoryC = 1 or BetEventCategoryC = 2) then exists(BetEventCategoryD) else if (BetEventCategoryC != 1 and BetEventCategoryC != 2) then not(exists(BetEventCategoryD)) else false() " />
-                                            <xs:assert test="(BetEventType = 1 and exists(MainBetEventID)) or (BetEventType = 0 and not (exists(MainBetEventID)))" />
                                             <xs:assert test="if (BetEventCategoryC = 2) then not(exists(CountryISOCode)) else if (BetEventCategoryC = 1) then exists(CountryISOCode) else if (BetEventCategoryC = 3 or BetEventCategoryC = 4) then (exists(CountryISOCode) or not(exists(CountryISOCode))) else false() " />
                                             <xs:assert test="if (exists(BetEventResultDate)) then (BetEventCreationDate lt BetEventResultDate) else if (not (exists(BetEventResultDate))) then true() else false() " />
                                             <xs:assert test="if (CancellationData/BetEventCancellation[string(.) eq 'true']) then exists(CancellationData/BetEventCancellationDate) else if (CancellationData/BetEventCancellation[string(.) eq 'false']) then (not(exists(CancellationData/BetEventCancellationDate))) else false()" />

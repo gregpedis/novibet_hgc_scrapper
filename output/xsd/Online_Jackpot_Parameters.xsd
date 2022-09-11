@@ -41,6 +41,17 @@
                                         <xs:complexType>
                                             <xs:sequence>
                                                 <xs:element name="JackpotID" type="mstns:JackpotID" />
+                                                <xs:element name="JackpotProviderID" type="mstns:JackpotID" >
+                                                            <xs:annotation>
+                                                                <xs:documentation>
+                                                                    Κωδικός Λειτουργίας Jackpot τον οποίο αποδίδει ο εκάστοτε jackpot provider:
+Ο μοναδικός κωδικός Λειτουργίας Jackpot. Τον κωδικό αποδίδειο  jackpot provider.
+
+Jackpot Provider Identifier:
+Unique identifier of the Jackpot, granted by the Jackpot Provider.
+                                                                </xs:documentation>
+                                                            </xs:annotation>
+                                                        </xs:element>
                                                 <xs:element name="JackpotName" type="mstns:LongString">
                                                     <xs:annotation>
                                                         <xs:documentation>Ονομασία Λειτουργίας Jackpot:

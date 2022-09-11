@@ -11,9 +11,6 @@
 Σχόλια / Comments:
 (1) Αναφορικά με το διομότιμο (peer to peer) Παίγνιο Πόκερ, το Bad Beat καταγράφεται ως Jackpot.
 (1) Regarding peer to peer Poker Games, the Bad Beat is considered Jackpot.
-
-(2) Εάν στο Τουρνουά Πόκερ συμμετέχουν και Παίκτες άλλων Κατόχων Άδειας, ο Κάτοχος Άδειας καταγράφει τα δεδομένα που αναφέρονται στους δικούς του Παίκτες. 
-(2) If Players from other Licensees also participate in the Poker Tournament, the Licensee reporting the data, records the data for its own Players. 
 </xs:documentation>
         </xs:annotation>
         <xs:complexType>

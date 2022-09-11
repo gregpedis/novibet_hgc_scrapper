@@ -80,7 +80,7 @@ Second (B) level of peer to peer categorization. Values are granted by HGC. Allo
                                             <xs:documentation>Κατηγορία Διομότιμων Παιγνίων (Γ):
 Τρίτο (Γ) επίπεδο κατηγοριοποίησης των διομότιμων Παιγνίων (peer to peer games). Οι τιμές καθορίζονται από την Ε.Ε.Ε.Π.. Επιτρεπόμενες τιμές:
 (1) = Texas Hold'em
-(2) = Omaha Hi/Lo
+(2) = Omaha
 (3) = Five Card Draw
 (4) = Razz
 (5) = 7Card Stud
@@ -91,7 +91,7 @@ Second (B) level of peer to peer categorization. Values are granted by HGC. Allo
 Peer To Peer Game Category (C):
 Third (C) level of game categorization. Values are granted by HGC. Allowed values:
 (1) = Texas Hold'em
-(2) = Omaha Hi/Lo
+(2) = Omaha
 (3) = Five Card Draw
 (4) = Razz
 (5) = 7Card Stud
@@ -324,11 +324,11 @@ Indicator of an incomplete peer to peer game session. Values are granted by HGC.
                                                     <xs:annotation>
                                                         <xs:documentation>
                                                     Κωδικός Ειδικού Χώρου Διεξαγωγής Παιγνίου:
-Ο μοναδικός κωδικός του Ειδικού Χώρου (Studio) διεξαγωγής του Παιγνίου, τον οποίο αποδίδει ο Κάτοχος Άδειας.
+Ο μοναδικός κωδικός του Ειδικού Χώρου (Studio) διεξαγωγής του Παιγνίου, τον οποίο αποδίδει η Ε.Ε.Ε.Π.
 (όταν το πεδίο  "PtPGameCategoryA" = 1)
 
 Studio Identification Number:
-The unique identification number of the Studio the Game was held, provided by the Licensee.
+The unique identification number of the Studio the Game was held, provided by HGC.
 (when "PtPGameCategoryA" = 1)
                                                 </xs:documentation>
                                                     </xs:annotation>
